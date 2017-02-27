@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.53" height="28.59" viewBox="0 0 18.53 28.59">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: 0.75px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #231f20;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3.5px;
+      }
+    </style>
+  </defs>
+  <title>scarf</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <circle class="cls-1" cx="10.03" cy="8.5" r="8.12" transform="translate(-1.67 2.51) rotate(-13.19)"/>
+        <path class="cls-2" d="M3.74,6.4a14.59,14.59,0,0,0-1.12,12.2A14.5,14.5,0,0,0,11,26.84"/>
+      </g>
+    </g>
+  </g>
+</svg>

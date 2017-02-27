@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28.91" height="22.35" viewBox="0 0 28.91 22.35">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: 0.75px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #231f20;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.5px;
+      }
+    </style>
+  </defs>
+  <title>jacket</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <circle class="cls-1" cx="22.01" cy="6.96" r="6.52" transform="translate(-0.78 10.63) rotate(-26.69)"/>
+        <path class="cls-2" d="M16.71,6.5a11.71,11.71,0,0,0,1.41,9.74,11.64,11.64,0,0,0,8.06,4.86"/>
+      </g>
+      <g>
+        <circle class="cls-1" cx="6.89" cy="6.89" r="6.52"/>
+        <path class="cls-2" d="M2.54,20.22a11.71,11.71,0,0,0,8.22-5.4,11.64,11.64,0,0,0,1-9.36"/>
+      </g>
+    </g>
+  </g>
+</svg>

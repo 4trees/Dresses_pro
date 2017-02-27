@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week35 Getting Dresses!</title>
+</head>
+<body>
+  <div class="container">
+    <div class="title">
+      <h2>Week35 GETTING DREESED! <span class="small"> Design from Giorgia, digitized by Liuhuaying</span></h2>
+    </div>
+    <div id='canvas'></div>
+  </div>
+<style>
+html{
+  font-family: 'Avenu',Helvetica;
+  color: #333;
+  background-color: #f8f4eb;
+}
+html,body{
+  height: 100%;
+  margin: 0;
+}
+
+.container{
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+}
+#canvas{
+  width: 100%;
+  height: 85%;
+  margin: 0;
+}
+.title{
+  height: 10%;
+  width: 100%;
+  padding-left: 2em;
+}
+.small{
+  font-size: 50%;
+  font-weight: 200;
+}
+
+</style>
+<script>
+//prepare canvas
+var canvas = document.getElementById('canvas');
+// var ctx = canvas.getContext('2d');
+var xmlns='http://www.w3.org/2000/svg';
+var plot=document.createElementNS(xmlns,'svg');
+var w=canvas.clientWidth, h=canvas.clientHeight;
+plot.id='svg';
+plot.setAttribute('xmlns',xmlns);
+plot.setAttribute('width',w);
+plot.setAttribute('height',h);
+// plot.style.transform='translate(50,50)';
+// console.log(plot.style.transform)
+document.getElementById('canvas').appendChild(plot);
+console.log(canvas.clientWidth,canvas.clientHeight,plot.width,plot.height)
+function line(x1,x2,y1,y2,color,width,name){
+   const line=document.createElementNS(xmlns,'line');
+    line.style.transition='transform 2s'
+    line.setAttribute('x1',x1)
+    line.setAttribute('y1',y1)
+    line.setAttribute('x2',x2)
+    line.setAttribute('y2',y2)
+    line.setAttribute('data-name',name)
+    line.style.strokeWidth=width;
+    line.style.stroke=color;
+return line
+}
+function symbol(name,x,y,height){
+    const symbol = document.createElementNS(xmlns, "image");
+    symbol.href.baseVal = `pic/${name}.svg`;
+    symbol.setAttribute('x',x)
+    symbol.setAttribute('y',y)
+    symbol.setAttribute('height',height)
+return symbol
+}
+
+var alldata={};
+function dataloaded(data,name){
+  alldata[name]=data;//store data to object and use them by property name.
+  // console.table(alldata.main)
+  const showers=alldata.main.filter(el=>el.shower==1);
+  const dresses=alldata.main.filter(el=>el.shower==0);
+  const portionY=(h-50)/690;//margin to each ends is 25.
+  const portionX=(w-80)/(14*7);//margin to each ends is 40;each day is 14 lines width.
+  const max=dresses.map(el=>el.off).reduce((a,b)=>Math.max(a,b))
+  const min=dresses.map(el=>el.on).reduce((a,b)=>Math.min(a,b))
+  // console.table(dresses)
+  console.log(portionX,portionY)
+
+  const dressg=document.createElementNS(xmlns,'g');
+  dressg.setAttribute('id','dress')
+  document.getElementById('svg').appendChild(dressg);
+  dresses.forEach((el,i)=>{
+    var linecolor=colorkey.find(e=>e.id==el.color).color; 
+    document.getElementById('dress').appendChild(line((el.order+(el.date-1)*14)*portionX+40,(el.order+(el.date-1)*14)*portionX+40,el.on*portionY+25,el.off*portionY+25,linecolor,2,'dress'));
+
+    const bottomline=document.createElementNS(xmlns,'g');
+    bottomline.setAttribute('id','endline'+i)
+    document.getElementById('svg').appendChild(bottomline);
+    document.getElementById('endline'+i).appendChild(line((el.order+(el.date-1)*14)*portionX+40-portionX/2,(el.order+(el.date-1)*14)*portionX+40+portionX/2,el.off*portionY+25,el.off*portionY+25,'#999',.75,'bottom'));
+    document.getElementById('endline'+i).appendChild(line((el.order+(el.date-1)*14)*portionX+40-portionX/2,(el.order+(el.date-1)*14)*portionX+40+portionX/2,el.on*portionY+25,el.on*portionY+25,'#999',.75,'top'));
+
+    if(el.style!=''){
+      var stylecolor=colorkey.find(e=>e.id==el.stylecolor).color;
+      const style=line((el.order+(el.date-1)*14)*portionX+40-2,(el.order+(el.date-1)*14)*portionX+40-2,el.on*portionY+25+1,el.off*portionY+25-1,stylecolor,3,'pattern')
+      style.style.strokeDasharray=(el.style=='pattern'?'.5,8':'1,8');
+      style.style.strokeLinecap=(el.style=='pattern'?'round':'')
+      document.getElementById('dress').appendChild(style);
+    }
+
+    if(el.new==1){    
+      document.getElementById('dress').appendChild(symbol(el.category,(el.order+(el.date-1)*14)*portionX+40-3,el.on*portionY+25+2,'6px'))
+    }
+
+  })
+  const showerg=document.createElementNS(xmlns,'g');
+  showerg.setAttribute('id','shower')
+  document.getElementById('svg').appendChild(showerg);
+  showers.forEach(el=>{
+    for(var i=0;i<10;i++){
+      showerg.appendChild(line((i+1+(el.date-1)*14)*portionX+40+2,(i+1+(el.date-1)*14)*portionX+40,((el.on+el.off)/2-3)*portionY+25,((el.on+el.off)/2+3)*portionY+25,'#8acad5',1.5,'shower'));
+    }
+  })
+  const pajamag=document.createElementNS(xmlns,'g');
+  pajamag.setAttribute('id','pajama')
+  document.getElementById('svg').appendChild(pajamag);
+  for(var i=0;i<7;i++){
+    pajamag.appendChild(symbol('pajama',(5+i*14)*portionX+40,5,'18px'))
+    pajamag.appendChild(symbol('pajama',(5+i*14)*portionX+40,h-25,'18px'))
+    // pajamag.appendChild(line((5+i*14)*portionX+40-3+8,(5+i*14)*portionX+40-3+8,12,25,'#333',1.5,'pajamatopverti'))
+    // pajamag.appendChild(line((5+i*14)*portionX+40-3+3,(5+i*14)*portionX+40-3+12,25,25,'#333',1.5,'pajamatophori'))
+    // pajamag.appendChild(line((5+i*14)*portionX+40-3+8,(5+i*14)*portionX+40-3+8,690*portionY+25-4,690*portionY+25+16,'#333',1.5,'pajamabottomverti'))
+  }
+
+}
+
+//get the data
+const files=[{file:'dresses.csv',parse:'maindata',name:'main'}];
+function call_user_func(method, params){
+  func = window[method];
+  return func.apply(method, params);
+}
+files.forEach((file)=>{
+  const filepath=file.file;
+  const parsemethod=file.parse;
+  const name=file.name;
+fetch(filepath).then(response=>response.text())//get the whole content of file as text
+.then(text=>{
+  var allTextLines = text.split(/\r\n|\n/);//break whole text to rows
+  var lines = [];
+  var data=[];
+  for (var i=1; i<allTextLines.length; i++) {
+    var row = allTextLines[i].split(',');//break each rows to array
+    data.push(call_user_func(parsemethod,[row]))
+  
+    };  
+    // console.table(data)
+  dataloaded(data,name);//data-store function
+})
+})
+
+//define your own data as we do in d3 parse function
+function maindata(row){
+  return{      
+        date: +row[0],
+        new: +row[1],
+        order: +row[2],
+        category: row[3],
+        color: +row[4],
+        style: row[5],
+        stylecolor: +row[6],
+        on: +row[7],
+        off: +row[8],
+        shower: +row[9]
+     }
+}
+
+//set the keys
+const colorkey=[
+    {id:1,color:'#eeadab'},
+    {id:2,color:'orange'},
+    {id:3,color:'#dededc'},
+    {id:4,color:'#333'},
+    {id:5,color:'#999'},
+    {id:6,color:'#c67564'},
+    {id:7,color:'#fcea51'},
+    {id:8,color:'#8acad5'},
+    {id:9,color:'#7891c9'},
+    {id:10,color:'brown'},
+    {id:11,color:'pink'},
+    {id:12,color:'green'},
+    {id:13,color:'#c0b4cc'},
+]
+
+</script>
+</body>
+
+</html>

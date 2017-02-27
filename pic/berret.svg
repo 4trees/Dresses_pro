@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32.16" height="24.27" viewBox="0 0 32.16 24.27">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: 0.75px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #231f20;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.5px;
+      }
+    </style>
+  </defs>
+  <title>berret</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <circle class="cls-1" cx="8.29" cy="8.29" r="6.52" transform="translate(-1.08 1.24) rotate(-8.06)"/>
+        <path class="cls-2" d="M3.42,6.16a11.71,11.71,0,0,0-1.77,9.68A11.64,11.64,0,0,0,7.74,23"/>
+      </g>
+      <g>
+        <circle class="cls-1" cx="25.27" cy="6.9" r="6.52" transform="translate(-0.72 3.61) rotate(-8.06)"/>
+        <path class="cls-2" d="M20.39,4.77a11.71,11.71,0,0,0-1.77,9.68,11.64,11.64,0,0,0,6.09,7.18"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.33" height="22.67" viewBox="0 0 25.33 22.67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #231f20;
+      }
+    </style>
+  </defs>
+  <title>sweater</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <rect class="cls-1" x="1" y="1" width="23.33" height="20.67"/>
+      <rect class="cls-2" x="1.67" y="1.67" width="11" height="17.9"/>
+    </g>
+  </g>
+</svg>
